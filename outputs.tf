@@ -1,11 +1,6 @@
 output "Region" {
-  value       = var.region
+  value = google_container_cluster.primary.region
 }
-
-output "Project_Id" {
-  value       = var.project_id
-}
-
 output "KJubernetes_Cluster_Name" {
   value       = google_container_cluster.primary.name
 }
