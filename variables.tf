@@ -14,3 +14,8 @@ variable "name_network" {
 variable "name_subnet" {
   description = "name subnet"
 }
+variable "project_id" {
+}
+variable "region" {
+  
+}
