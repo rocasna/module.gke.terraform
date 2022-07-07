@@ -1,6 +1,3 @@
-output "Region" {
-  value       = google_container_cluster.primary.region
-}
 output "Kubernetes_Cluster_Name" {
   value       = google_container_cluster.primary.name
 }
