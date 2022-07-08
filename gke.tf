@@ -1,8 +1,8 @@
 
 # GKE cluster
 resource "google_container_cluster" "primary" {
-  name     = "${var.project_id}-gke"
-  location = var.region
+  name     = "${var.name}-gke"
+  location = var.zone
   project = var.project_id
   
   # We can't create a cluster with no node pool defined, but we want to only use
@@ -17,8 +17,8 @@ resource "google_container_cluster" "primary" {
 
 # Separately Managed Node Pool
 resource "google_container_node_pool" "primary_nodes" {
-  name       = "${google_container_cluster.primary.name}-node-pool-test"
-  location   = var.region
+  name       = "${var.name}-node-pool"
+  location   = var.zone
   cluster    = google_container_cluster.primary.name
   node_count = var.gke_num_nodes
   project = var.project_id
@@ -34,7 +34,7 @@ resource "google_container_node_pool" "primary_nodes" {
     }
 
     # preemptible  = true
-    machine_type = "n1-standard-1"
+    machine_type = "e2-medium"
     tags         = ["gke-node", "${var.project_id}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
